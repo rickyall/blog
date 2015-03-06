@@ -14,6 +14,9 @@ var session=require('express-session');
 var MongoStore=require('connect-mongo')(session);
 
 
+var multer  = require('multer');
+
+
 var app = express();
 
 
@@ -46,6 +49,13 @@ app.use(session({
         port:settings.port
     })
 }));
+
+app.use(multer({
+    dest:'./public/images',
+    rename:function(fieldname,filename)
+{
+    return filename;
+}}));
 
 
 
