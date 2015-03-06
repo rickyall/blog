@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var settings=require('./settings');
 
+var flash = require('connect-flash');
+
 var session=require('express-session');
 var MongoStore=require('connect-mongo')(session);
 
@@ -31,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(flash());
 
 //会话支持
 app.use(session({
@@ -44,6 +46,8 @@ app.use(session({
         port:settings.port
     })
 }));
+
+
 
 routes(app);
 
