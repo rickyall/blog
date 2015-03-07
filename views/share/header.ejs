@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>
+  <%= title%>
+</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" >
+<link rel="stylesheet" href="blog.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">P2P联盟</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">话题</a></li>
+        
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+       <% if (user) { %>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= user.name %>  <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/home">个人主页</a></li>
+            <li><a href="/logout">退出</a></li>
+          </ul>
+        </li>
+        
+
+       <% } else { %>
+        <li>
+           <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#sign">登录</a>
+        </li>
+        <li><a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#register">注册</a></li>
+        <% } %>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!--注册弹出框-->
+<div id="register" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4>注册</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/reg">
+          <div class="form-group">
+            <label for="name">昵称</label>
+            <input type="text" class="form-control" name="name" placeholder="输入一个喜欢的名字">
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" name="password" placeholder="输入密码">
+          </div>
+           <div class="form-group">
+            <label for="password-repeat">确认密码</label>
+            <input type="password" class="form-control" name="password-repeat" placeholder="重新输入密码">
+          </div>
+
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" class="form-control" name="email" placeholder="输入邮箱">
+          </div>
+             <div class="modal-footer">
+              <button  type="submit" class="btn btn-primary form-control ">提交</button>
+            </div>       
+        </form>
+      </div>
+           
+    </div>
+  </div>
+</div>
+
+<!--登录弹出框-->
+
+<div id="sign" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+       <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4>登录</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/login" >
+          <div class="form-group">
+            <label for="name">昵称</label>
+            <input type="text" class="form-control" name="name" placeholder="输入昵称">
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" name="password" placeholder="输入密码">
+          </div>
+             <div class="modal-footer">
+              <button  type="submit" class="btn btn-primary form-control ">登录</button>
+            </div>       
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<article class="container">
