@@ -1,0 +1,56 @@
+<%- include ../share/header %>
+
+	<div class="row">
+		<div class="col-md-8">
+			<div role="tabpanel">
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">每日推荐</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">热门话题</a></li>
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active " id="home">
+			    	<% posts.forEach(function (post, index) { %>
+                    <div class="topic-cell">
+					  <h3><a href="#"><%= post.title %></a></h3>
+					  
+					  <p  id="demoP" ><%- post.post %></p>
+
+					  <p class="info text-right" style="color:#969696">
+					<a href="#" style="color:#969696;margin-right:5px"><%= post.name %></a> 
+					    <%= post.time.minute %>
+					  </p>
+					</div>
+
+					<% }) %>
+				</div>
+			    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+			  </div>
+
+			</div>
+		</div>
+		<div class="col-md-4 text-center">
+			<div class="list-group">
+
+			  <a href="#" class="list-group-item disabled">
+			    最新话题
+			  </a>
+			  <% posts.forEach(function(post,index){ %>
+			  <a href="#" class="list-group-item text-left"><%= post.title %></a>
+			  <%})%>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+
+
+
+
+<%- include ../share/footer %>

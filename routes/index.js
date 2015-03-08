@@ -1,5 +1,6 @@
 var crypto = require('crypto'),
-    User = require('../models/user.js');
+    User = require('../models/user.js')
+    ,Post = require('../models/post.js');
 var express = require('express');
 var router = express.Router();
 
@@ -22,6 +23,39 @@ module.exports = function(app) {
     });
   });
 
+
+ //话题
+ app.get('/topic',function(req,res){
+
+ 	Post.get(null, function(err,posts){
+
+ 		if(err){
+ 			posts=[];
+ 		}
+ 
+
+ 	res.render('topic/topic',{
+ 		title:'话题',
+ 		user: req.session.user,
+ 		posts: posts,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+ 	});
+ });
+});
+
+ app.post('/post',function(req,res){
+ 	var currentUser=req.session.user,
+ 	post=new Post(currentUser.name,req.body.title,req.body.post);
+ 	post.save(function(err){
+ 		if(err){
+ 			req.flash('error',err);
+ 			return res.redirect('/topic');
+ 		}
+ 		req.flash('success','发布成功！');
+ 		res.redirect('/topic');
+ 	});
+ });
 
 
  //提交注册信息

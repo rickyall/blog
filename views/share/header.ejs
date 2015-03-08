@@ -24,11 +24,32 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <form class="navbar-form navbar-left" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="找产品/话题/人..">
+       
+        <span class="input-group-btn">
+        <button type="submit" class="btn btn-default " style="border-left:#fff">GO</button>
+        </span>
+         </div>
+    <!--发帖子 -->
+         <% if(user){%>        
+           <a href="javascript:void(0)" type="button" class="btn btn-default" data-toggle="modal" data-target="#post">发帖子</a>
+         <% }else{ %>
+           <a href="javascript:void(0)" type="button" class="btn btn-default" data-toggle="modal" data-target="#sign">发帖子</a>
+         <% } %>
+      </form>
+
+
+
+
       <ul class="nav navbar-nav">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">话题</a></li>
-        
+        <li><a href="/">首页</a></li>
+        <li><a href="/topic">话题</a></li>
       </ul>
+
+
+      
       
       <ul class="nav navbar-nav navbar-right">
        <% if (user) { %>
@@ -128,6 +149,39 @@
     </div>
   </div>
 </div>
+
+
+
+<!--发帖子-->
+
+<div id="post" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+       <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4>发帖子</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/post" >
+          <div class="form-group">
+            <label for="title">标题</label>
+            <input type="text" class="form-control" name="title" placeholder="输入标题">
+          </div>
+          <div class="form-group">
+            <label for="post">正文内容</label>
+            <textarea  class="form-control"  rows="20" cols="70" name="post" placeholder="说点啥.."></textarea>
+          </div>
+             <div class="modal-footer">
+              <button  type="submit" class="btn btn-primary ">发表</button>
+            </div>       
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 
 
 
