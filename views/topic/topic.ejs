@@ -1,7 +1,18 @@
 <%- include ../share/header %>
 
 	<div class="row">
-		<div class="col-md-8">
+	    <div class="col-md-2 text-center">
+			<div class="list-group">
+
+			  <a href="#" class="list-group-item disabled">
+			    热门标签
+			  </a>
+			  <% posts.forEach(function(post,index){ %>
+			  <a href="#" class="list-group-item text-left"><%= post.title %></a>
+			  <%})%>
+			</div>
+		</div>
+		<div class="col-md-7">
 			<div role="tabpanel">
 
 			  <!-- Nav tabs -->
@@ -32,7 +43,7 @@
 
 			</div>
 		</div>
-		<div class="col-md-4 text-center">
+		<div class="col-md-3 text-center">
 			<div class="list-group">
 
 			  <a href="#" class="list-group-item disabled">
