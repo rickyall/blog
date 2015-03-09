@@ -56,8 +56,11 @@ module.exports = function(app) {
 });
 
  app.post('/post',function(req,res){
+  var tag=req.body.tag;
+  var tags= new Array(); 
+   tags=tag.split(",");
  	var currentUser=req.session.user,
- 	post=new Post(currentUser.name,req.body.title,req.body.post);
+ 	post=new Post(currentUser.name,req.body.title,tags,req.body.post);
  	post.save(function(err){
  		if(err){
  			req.flash('error',err);
@@ -67,6 +70,45 @@ module.exports = function(app) {
  		res.redirect('/topic');
  	});
  });
+
+
+
+//标签页
+
+app.get('/tags',function(req,res){
+
+  Post.getTags(function(err,posts){
+    if(err){
+      req.flash('error',err);
+      return res.redirect('back');
+    }
+    res.render('tags',{
+      title:'标签',
+      posts:posts,
+      user:req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+});
+
+
+//标签文章页
+app.get("/tags/:tag",function(req,res){
+  
+  Post.getTag(req.params.tag,function(err,posts){
+    if(err){
+      req.flash('error,err');
+      return res.redirect('/');
+    }
+    res.render('topic/tag',{
+      title:'TAG:'+req.params.tag,
+      posts:posts,
+      user:req.session.user,
+      success:req.flash('success').toString(),
+      error:req.flash('error').toString()
+    });
+  });
+});
 
 
 

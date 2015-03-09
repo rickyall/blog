@@ -1,9 +1,8 @@
+
+
 <%- include ../share/header %>
 <div class="row">
     <div class="col-md-2 text-center">
-    <% if(user && title===user.name){ %>
-    <h1></h1>
-    <% }%>
 	</div>
 
 
@@ -13,17 +12,7 @@
 	  <p><h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3></p>
 	 
 	  <p class="info" style="color:#969696">
-	    作者：<a href="/user/<%= post.name %>"><%= post.name %></a>   |
-	    标签：
-		  <% post.tags.forEach(function(tag,index){ %>
-		  <% if(tag){ %>
-		  <a href="/tags/<%=tag%>"><%=tag%></a>
-		  <% }%>
-		  <%})%> | 
-	    <% if(user && title===user.name) {%>
-	    <a href="/edit/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">编辑</a>   <a href="/remove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">删除</a> 
-
-	   <% } %> 
+	    作者：<a href="/user/<%= post.name %>"><%= post.name %></a>
 	  </p>
 	  <p class="demop"><%- post.post %></p>
 	   <p class="text-right" style="color:#969696">
@@ -31,7 +20,6 @@
 	  </p>
 	  </div>
 	<% }) %>
-      <%- include ../share/page %>
 	</div>
 
 	<div class="col-md-3 text-center">
