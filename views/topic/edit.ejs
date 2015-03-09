@@ -1,0 +1,34 @@
+<%- include ../share/header %>
+
+
+
+<div class="row">
+	<div class="col-md-6">
+
+		<form method="post">
+			<div class="form-group">
+			  <label for="title">标题</label>
+			  <input type="text" name="title" class="form-control"  value="<%= post.title %>" disabled="disabled" />
+			</div>
+			<div class="form-group">
+			  <label for="post">正文内容</label>
+			  <textarea name="post" class="form-control"  rows="30" cols="100"><%= post.post %></textarea>
+			</div>
+			<div class="text-right">
+			  <input type="submit" class="btn btn-primary " value="保存修改" />
+			</div>
+		</form>
+
+	<div class="col-md-6 text-center">
+
+
+
+	</div>
+
+
+
+</div>
+
+
+
+<%- include ../share/footer %>

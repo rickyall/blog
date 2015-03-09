@@ -26,14 +26,17 @@
 			    <div role="tabpanel" class="tab-pane active " id="home">
 			    	<% posts.forEach(function (post, index) { %>
                     <div class="topic-cell">
-					  <h3><a href="#"><%= post.title %></a></h3>
+					  <h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3>
+					  <p class="info" style="color:#969696">作者：
+					<a href="/user/<%= post.name %>" ><%= post.name %></a> 
+					  </p>
 					  
 					  <p  id="demoP" ><%- post.post %></p>
-
-					  <p class="info text-right" style="color:#969696">
-					<a href="#" style="color:#969696;margin-right:5px"><%= post.name %></a> 
+					   <p class="info text-right" style="color:#969696"> 
 					    <%= post.time.minute %>
-					  </p>
+					   </p>
+
+					  
 					</div>
 
 					<% }) %>
@@ -50,7 +53,7 @@
 			    最新话题
 			  </a>
 			  <% posts.forEach(function(post,index){ %>
-			  <a href="#" class="list-group-item text-left"><%= post.title %></a>
+			  <a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" class="list-group-item text-left"><%= post.title %></a>
 			  <%})%>
 			</div>
 		</div>

@@ -1,0 +1,36 @@
+<%- include ../share/header %>
+<div class="row">
+    <div class="col-md-2 text-center">
+    <% if(user && title===user.name){ %>
+    <h1></h1>
+    <% }%>
+	</div>
+
+
+  <div class="col-md-7 topic-cell">
+	<% posts.forEach(function (post, index) { %>
+	  <p><h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3></p>
+	 
+	  <p class="info" style="color:#969696">
+	    作者：<a href="/user/<%= post.name %>"><%= post.name %></a>   |
+	    <% if(user && title===user.name) {%>
+	    <a href="/edit/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">编辑</a>   <a href="/remove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">删除</a> 
+
+	   <% } %> 
+	  </p>
+	  <p id="demoP"><%- post.post %></p>
+	   <p class="info text-right" style="color:#969696">
+	    <%= post.time.minute %>
+	  </p>
+	<% }) %>
+
+	</div>
+
+	<div class="col-md-3 text-center">
+
+
+	</div>
+</div>
+
+
+<%- include ../share/footer %>
