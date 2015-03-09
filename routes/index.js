@@ -1,6 +1,7 @@
 var crypto = require('crypto'),
     User = require('../models/user.js')
-    ,Post = require('../models/post.js');
+    ,Post = require('../models/post.js'),
+    Comment = require('../models/comment.js');
 var express = require('express');
 var router = express.Router();
 
@@ -108,6 +109,35 @@ app.get('/topic/:name/:day/:title',function(req,res){
     });
   });
 });
+
+
+//添加文章评论
+
+app.post('/topic/:name/:day/:title',function(req,res){
+
+  var date=new Date(),
+      time=date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
+             date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+  var comment={
+    name:req.body.name,
+    email:req.body.email,
+    website:req.body.website,
+    time:time,
+    content:req.body.content
+  };
+  var newComment=new Comment(req.params.name,req.params.day,req.params.title,comment);
+    newComment.save(function (err) {
+    if (err) {
+      req.flash('error', err); 
+      return res.redirect('back');
+    }
+    req.flash('success', '留言成功!');
+    res.redirect('back');
+  });
+
+});
+
+
 
 
 
@@ -220,6 +250,8 @@ app.get('/remove/:name/:day/:title',function(req,res){
 
 
 
+//登录
+
 app.post('/login', function (req, res) {
   //生成密码的 md5 值
   var md5 = crypto.createHash('md5'),
@@ -239,7 +271,7 @@ app.post('/login', function (req, res) {
     //用户名密码都匹配后，将用户信息存入 session
     req.session.user = user;
     req.flash('success', '登陆成功!');
-    res.redirect('/');//登陆成功后跳转到主页
+    res.redirect('back');//登陆成功后跳转到当前页
   });
 });
 

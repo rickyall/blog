@@ -17,6 +17,14 @@ module.exports = function(grunt) {
         dest: 'public/javascripts/<%= pkg.name %>.js'
       }
     },
+    
+
+    //删除文件
+    clean: { 
+      build: { 
+        src: ['public/stylesheets/blog.css'] 
+      } 
+    },
 
 
 
@@ -65,7 +73,8 @@ module.exports = function(grunt) {
       }
     }
   });
-
+  
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -74,6 +83,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint']);
 
-  grunt.registerTask('default', ['jshint', 'concat','cssmin', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'clean','concat','cssmin', 'uglify']);
 
 };
