@@ -39,7 +39,7 @@ module.exports = function(app) {
 
  		if(err){
  			posts=[];
- 		}
+ 	}
  
 
  	res.render('topic/topic',{
@@ -82,7 +82,7 @@ app.get('/tags',function(req,res){
       req.flash('error',err);
       return res.redirect('back');
     }
-    res.render('tags',{
+    res.render('topic/tags',{
       title:'标签',
       posts:posts,
       user:req.flash('success').toString(),
@@ -94,7 +94,7 @@ app.get('/tags',function(req,res){
 
 //标签文章页
 app.get("/tags/:tag",function(req,res){
-  
+
   Post.getTag(req.params.tag,function(err,posts){
     if(err){
       req.flash('error,err');
@@ -109,6 +109,34 @@ app.get("/tags/:tag",function(req,res){
     });
   });
 });
+
+
+
+
+
+//搜索页面
+app.get('/search',function(req,res){
+  Post.search(req.query.keyword,function(err,posts){
+    if(err){
+      req.flash('error',err);
+      return res.redirect('/');
+    }
+
+    res.render('topic/search',{
+      title:"SEARCH:"+req.query.keyword,
+      posts:posts,
+      user:req.session.user,
+      success:req.flash('success').toString(),
+      error:req.flash('error').toString()
+    });
+  });
+});
+
+
+
+
+
+
 
 
 
