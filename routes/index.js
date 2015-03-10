@@ -183,7 +183,6 @@ app.get('/topic/:name/:day/:title',function(req,res){
   Post.getOne(req.params.name,req.params.day,req.params.title,function(err,post){
     if(err){
       req.flash('error',err);
-      return res.redirect('/');
     }
 
     res.render('topic/article',{

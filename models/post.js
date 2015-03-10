@@ -28,7 +28,8 @@ Post.prototype.save = function(callback) {
       title: this.title,
       tags:this.tags,
       post: this.post,
-      comments: []
+      comments: [],
+      pv:0
   };
   //打开数据库
   mongodb.open(function (err, db) {
@@ -129,42 +130,63 @@ Post.getTen = function(name, page, callback) {
 
 
 
-
-
-
-
-
-
-Post.getOne=function(name,day,title,callback){
+//获取一篇文章
+Post.getOne = function(name, day, title, callback) {
   //打开数据库
-  mongodb.open(function(err,db){
-    if(err){
+  mongodb.open(function (err, db) {
+    if (err) {
       return callback(err);
     }
-
-    //读取posts集合
-
-    db.collection('posts',function(err,collection){
-      if(err){
+    //读取 posts 集合
+    db.collection('posts', function (err, collection) {
+      if (err) {
         mongodb.close();
         return callback(err);
       }
       //根据用户名、发表日期及文章名进行查询
-
       collection.findOne({
-        "name":name,
-        "time.day":day,
-        "title":title
-      },function(err,doc){
-        mongodb.close();
-        if(err){
+        "name": name,
+        "time.day": day,
+        "title": title
+      }, function (err, doc) {
+        if (err) {
+          mongodb.close();
           return callback(err);
         }
-        callback(null,doc);//返回查询的一篇文章
+        if (doc) {
+          //每访问 1 次，pv 值增加 1
+          collection.update({
+            "name": name,
+            "time.day": day,
+            "title": title
+          }, {
+            $inc: {"pv": 1}
+          }, function (err) {
+            mongodb.close();
+            if (err) {
+              return callback(err);
+            }
+          });
+          callback(null, doc);//返回查询的一篇文章
+        }
       });
     });
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Post.edit=function(name,day,title,callback){
