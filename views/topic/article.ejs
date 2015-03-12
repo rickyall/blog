@@ -10,16 +10,17 @@
 	<div class="col-md-7 ">
 	 <h3><a><%= post.title %></a></h3>
 		<p class="info">
-		  作者：<a href="/user/<%= post.name %>"><%= post.name %></a> | 
-		  日期：<%= post.time.minute %> |
-		  标签：
+		  <a href="/user/<%= post.name %>" class="black"><%= post.name %></a> 
 		  <% post.tags.forEach(function(tag,index){ %>
 		  <% if(tag){ %>
-		  <a href="/tags/<%=tag%>"><%=tag%></a>
+		  <a href="/tags/<%=tag%>" class="label label-default"><%=tag%></a>
 		  <% }%>
 		  <%})%>
 		</p>
 		<p><%- post.post %></p>
+		<p class="text-right" style="color:#969696"> 
+			<%= post.time.minute %>
+		</p>
 
 		<%- include comment %>
 	</div>

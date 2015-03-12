@@ -10,25 +10,29 @@
   <div class="col-md-7">
 	<% posts.forEach(function (post, index) { %>
 	<div class="topic-cell"> 
-	  <p><h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3></p>
+	  <p><h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3> </p>
 	 
 	  <p class="info" style="color:#969696">
-	    作者：<a href="/user/<%= post.name %>"><%= post.name %></a>   |
-	    标签：
+	    <a class="black" href="/user/<%= post.name %>"><%= post.name %></a>   
+	    
 		  <% post.tags.forEach(function(tag,index){ %>
 		  <% if(tag){ %>
-		  <a href="/tags/<%=tag%>"><%=tag%></a>
+		  <a href="/tags/<%=tag%>" class="label label-default"><%=tag%></a>
 		  <% }%>
-		  <%})%> | 
+		  <%})%>  
+	   
+	  </p>
+	  <p class="demop"><%- post.post %></p>
+	    <p class="text-right" style="color:#969696"> 
 	    <% if(user && title===user.name) {%>
 	    <a href="/edit/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">编辑</a>   <a href="/remove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" style="color:#969696">删除</a> 
 
 	   <% } %> 
-	  </p>
-	  <p class="demop"><%- post.post %></p>
-	   <p class="text-right" style="color:#969696">
-	    <%= post.time.minute %>
-	  </p>
+
+	    看（<%= post.pv %>）  评（<%= post.comments.length %> ）
+
+					    <%= post.time.minute %>
+					   </p>
 	  </div>
 	<% }) %>
       <%- include ../share/page %>

@@ -27,22 +27,18 @@
 			    	<% posts.forEach(function (post, index) { %>
                     <div class="topic-cell">
 					  <h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3>
-					  <p class="info" style="color:#969696">作者：
-					<a href="/user/<%= post.name %>" ><%= post.name %></a> | 
-
-					标签：
+					  <p class="info" style="color:#969696">
+					<a class="black" href="/user/<%= post.name %>" ><%= post.name %></a> 
 					  <% post.tags.forEach(function (tag, index) { %>
 					    <% if (tag) { %>
-					      <a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
+					      <a  href="/tags/<%= tag %>" class="label label-default"><%= tag %></a>
 					    <% } %>
 					  <% }) %>
 
 					  </p>
-					  
-					  <p  class="demop" ><%- post.post %></p>
-					  <p class="info">阅读：<%= post.pv %> | 评论：<%= post.comments.length %></p>
-
-					   <p class="text-right" style="color:#969696"> 
+					  <p class="demop"><%- post.post %></p>
+					
+					   <p class="text-right" style="color:#969696"> 看（<%= post.pv %>）  评（<%= post.comments.length %> ）
 					    <%= post.time.minute %>
 					   </p>
 
