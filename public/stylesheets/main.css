@@ -8,6 +8,10 @@
 }
 
 
+.black{
+	color:#000000;
+}
+
 .show{
 	display:block;
 }
@@ -15,7 +19,6 @@
 .hidden{
 	display:none;
 }
-
 
 
 
