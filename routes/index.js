@@ -60,7 +60,7 @@ module.exports = function(app) {
   var tags= new Array(); 
    tags=tag.split(",");
  	var currentUser=req.session.user,
- 	post=new Post(currentUser.name,req.body.title,tags,req.body.post);
+ 	post=new Post(currentUser.name,currentUser.head,req.body.title,tags,req.body.post);
  	post.save(function(err){
  		if(err){
  			req.flash('error',err);
