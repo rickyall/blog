@@ -6,17 +6,23 @@
 	<div class="col-md-7 ">
 	 <h3><a><%= post.title %></a></h3>
 		<p class="info">
-		  <a href="/user/<%= post.name %>" class="black"><%= post.name %></a> 
+		  作者：<a href="/user/<%= post.name %>"><%= post.name %></a> | 
+		  日期：<%= post.time.minute %> |
+		  标签：
 		  <% post.tags.forEach(function(tag,index){ %>
 		  <% if(tag){ %>
-		  <a href="/tags/<%=tag%>" class="label label-default"><%=tag%></a>
+		  <a href="/tags/<%=tag%>"><%=tag%></a>
 		  <% }%>
 		  <%})%>
 		</p>
 		<p><%- post.post %></p>
+<<<<<<< HEAD
 		<p class="text-right" style="color:#969696"> 
 			<%= post.time.minute %>
 		</p>
+=======
+
+>>>>>>> parent of a7caf9b... 调整了标签的样式
 		<%- include comment %>
 	</div>
 	<div class="col-md-3 text-center">
