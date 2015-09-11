@@ -24,7 +24,16 @@ module.exports = function(app) {
 
 
 
+//图表页
 
+app.get('/chat',function(req,res){
+  res.render('data/chat',{
+    title:'图表',
+    user:req.session.user,
+    success:req.flash('success').toString(),
+    error:req.flash('error').toString()
+  });
+});
 
 
 

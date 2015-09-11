@@ -26,7 +26,11 @@
 			    <div role="tabpanel" class="tab-pane active " id="home">
 			    	<% posts.forEach(function (post, index) { %>
                     <div class="topic-cell">
+<<<<<<< HEAD
 					  <h3><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3>
+=======
+					  <h3><img src="<%= post.head %>"/><a href="/topic/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3>
+>>>>>>> parent of 593053f... Revert "调整了标签的样式"
 					  <p class="info" style="color:#969696">
 					<a class="black" href="/user/<%= post.name %>" ><%= post.name %></a> 
 					  <% post.tags.forEach(function (tag, index) { %>
